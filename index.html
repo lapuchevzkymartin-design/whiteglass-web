@@ -607,7 +607,7 @@ const LS_VERSION = 'wg_datav';
    localStorage guardado con otra versión se descarta, así el CÓDIGO manda y un
    deploy nuevo nunca queda tapado por una edición vieja. El localStorage solo
    persiste ediciones manuales del panel hechas sobre ESTA misma versión. */
-const DATA_VERSION = 'ars-2026-07-17-fixed-rate';
+const DATA_VERSION = 'ars-2026-07-17-rounded-10k';
 
 /* Limpieza de claves pre-migración (venían en USD y rompían el render). */
 try { localStorage.removeItem('wg_precios'); localStorage.removeItem('wg_config'); } catch(e){}
@@ -659,9 +659,15 @@ const REPAIRS = [
 const $ = s => document.querySelector(s);
 const $$ = s => [...document.querySelectorAll(s)];
 const fmtUSD  = v => 'USD ' + v;                                    // v ya en USD
-const fmtARS  = v => '$ ' + Math.round(v).toLocaleString('es-AR');  // v ya en ARS
-const usdDeArs = v => CONFIG.dolar > 0 ? 'USD ' + Math.round(v / CONFIG.dolar) : '—'; // ARS -> USD (referencia derivada; sin dólar válido no divide)
-const arsDeUsd = v => '$ ' + Math.round(v * CONFIG.dolar).toLocaleString('es-AR'); // USD -> ARS
+const ROUND_ARS_STEP = 10000;
+const roundARS = v => {
+  const n = Math.round(v);
+  if (n % 5000 === 0) return n;
+  return Math.round(n / ROUND_ARS_STEP) * ROUND_ARS_STEP;
+};
+const fmtARS  = v => '$ ' + roundARS(v).toLocaleString('es-AR');  // v ya en ARS, mostrado redondeado
+const usdDeArs = v => CONFIG.dolar > 0 ? 'USD ' + Math.round(roundARS(v) / CONFIG.dolar) : '—'; // ARS -> USD orientativo
+const arsDeUsd = v => '$ ' + roundARS(v * CONFIG.dolar).toLocaleString('es-AR'); // USD -> ARS, mostrado redondeado
 
 let modelo = "13";
 
