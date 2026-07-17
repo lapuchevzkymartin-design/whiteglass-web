@@ -816,26 +816,8 @@ $$('.reveal').forEach(el => io.observe(el));
 
 render();
 
-/* --- dólar fijo ---
-   Se mantiene el valor de CONFIG.dolar como fuente única para que todos los
-   dispositivos vean los mismos precios hasta el próximo deploy. */
-async function actualizarDolar(){
-  try {
-    const r = await fetch('https://dolarapi.com/v1/dolares/oficial', {cache:'no-store'});
-    if (!r.ok) return;
-    const d = await r.json();
-    const venta = Number(d.venta);
-    if (!venta) return;
-    CONFIG.dolar = venta;
-    render();
-    const fecha = d.fechaActualizacion
-      ? new Date(d.fechaActualizacion).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})
-      : '';
-    $('#rateNote').textContent = `Pantallas y baterías están en pesos argentinos (precio final). Otras reparaciones se calculan al dólar oficial de $${venta.toLocaleString('es-AR')} por USD${fecha ? ' (actualizado '+fecha+' hs)' : ''}. El valor en USD es orientativo.`;
-  } catch(e){ /* si falla la API se mantiene el valor por defecto */ }
-}
-// actualizarDolar();
-// setInterval(actualizarDolar, 10*60*1000);
+/* El dólar queda fijo en CONFIG.dolar para que todos los dispositivos vean
+   los mismos precios hasta el próximo deploy o edición manual del panel. */
 
 /* =========================================================
    PANEL ADMIN — se abre tocando 3 veces el puntito del footer
