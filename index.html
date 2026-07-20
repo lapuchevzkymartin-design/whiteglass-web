@@ -570,10 +570,9 @@ const PRECIOS = {
 "XS Max": {"lcd": 83000, "soft": 166000, "bat": [69000, 93000, 103000], "auricular": 45, "parlante": 35, "vidrioCam": 25, "faceid": 60, "tapa": 45, "flexCarga": 45},
 "11": {"lcd": 70000, "bat": [60000, 81000, 90000], "auricular": 45, "parlante": 35, "vidrioCam": 25, "faceid": 60, "tapa": 36, "flexCarga": 40},
 "11 Pro": {"lcd": 95000, "soft": 143000, "bat": [77000, 104000, 116000], "auricular": 50, "parlante": 35, "vidrioCam": 25, "faceid": 60, "tapa": 43, "flexCarga": 65},
-"11 Pro Max": {"lcd": 100000, "soft": 175000, "bat": [91000, 123000, 137000], "auricular": 45, "parlante": 40, "vidrioCam": 25, "faceid": 60, "tapa": 46, "flexCarga": 75},
-"12 Mini": {"lcd": 127000, "bat": [54000, 97000, 106000], "auricular": 50, "parlante": 55, "vidrioCam": 25, "faceid": 65, "tapa": 40, "flexCarga": 45},
-"12": {"lcd": 105000, "soft": 180000, "bat": [60000, 103000, 113000], "auricular": 50, "parlante": 35, "vidrioCam": 25, "faceid": 65, "tapa": 46, "flexCarga": 40},
-"12 Pro": {"lcd": 105000, "soft": 180000, "bat": [60000, 103000, 113000], "auricular": 50, "parlante": 35, "vidrioCam": 25, "faceid": 65, "tapa": 50, "flexCarga": 40},
+"11 Pro Max": {"lcd": 100000, "soft": 175000, "bat": [70000, null, 100000], "auricular": 45, "parlante": 40, "vidrioCam": 25, "faceid": 60, "tapa": 46, "flexCarga": 75},
+"12 Mini": {"lcd": 127000, "bat": [54000, 97000, 85000], "auricular": 50, "parlante": 55, "vidrioCam": 25, "faceid": 65, "tapa": 40, "flexCarga": 45},
+"12/12 Pro": {"lcd": 105000, "soft": 180000, "bat": [60000, 80000, 95000], "auricular": 50, "parlante": 35, "vidrioCam": 25, "faceid": 65, "tapa": 50, "flexCarga": 40},
 "12 Pro Max": {"lcd": 180000, "soft": 240000, "bat": [97000, 120000, 146000], "auricular": 50, "parlante": 40, "vidrioCam": 30, "faceid": 65, "tapa": 53, "flexCarga": 60},
 "13 Mini": {"lcd": 130000, "bat": [57000, 103000, 114000], "auricular": 50, "parlante": 35, "vidrioCam": 25, "faceid": 65, "tapa": 45, "flexCarga": 45},
 "13": {"lcd": 115000, "soft": 190000, "bat": [69000, 91000, 103000], "auricular": 50, "parlante": 35, "vidrioCam": 25, "faceid": 65, "tapa": 56, "flexCarga": 42},
@@ -607,7 +606,7 @@ const LS_VERSION = 'wg_datav';
    localStorage guardado con otra versión se descarta, así el CÓDIGO manda y un
    deploy nuevo nunca queda tapado por una edición vieja. El localStorage solo
    persiste ediciones manuales del panel hechas sobre ESTA misma versión. */
-const DATA_VERSION = 'ars-2026-07-17-rounded-65k';
+const DATA_VERSION = 'ars-2026-07-20-battery-update';
 
 /* Limpieza de claves pre-migración (venían en USD y rompían el render). */
 try { localStorage.removeItem('wg_precios'); localStorage.removeItem('wg_config'); } catch(e){}
